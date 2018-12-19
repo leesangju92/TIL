@@ -14,8 +14,11 @@ for key,value in lotto_data.items():
         real_numbers.append(value)
 
 
+
 real_numbers.sort()
 bonus_number = lotto_data['bnusNo']
+
+#수정
 
 
 numbers = list(range(1,46)) 
@@ -32,7 +35,7 @@ bonus_check = list(set(my_numbers) & set(bonus_number))
 
 if (len(common_numbers) == 6):
         print("1등")
-elif (len(common_numbers) == 5 and len(bonus_check) == 1) :
+elif (len(common_numbers) == 5) and (len(bonus_check) == 1) :
         print("2등")
 elif (len(common_numbers)== 5):
         print("3등")
