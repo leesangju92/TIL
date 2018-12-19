@@ -27,6 +27,26 @@ my_numbers.sort()
 print(my_numbers)
 print(real_numbers)
 
+common_numbers = list(set(my_numbers) & set(real_numbers))
+bonus_check = list(set(my_numbers) & set(bonus_number))
+
+if (len(common_numbers) == 6):
+        print("1등")
+elif (len(common_numbers) == 5 and len(bonus_check) == 1) :
+        print("2등")
+elif (len(common_numbers)== 5):
+        print("3등")
+elif (len(common_numbers) == 4):
+        print("4등")
+elif (len(common_numbers) == 3):
+        print("5등")
+else:
+        print("꽝")
+
+
+
+
+
 
 
 # my_numbers, real_numbers, bonus_number
