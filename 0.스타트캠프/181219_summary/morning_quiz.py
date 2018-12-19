@@ -103,23 +103,34 @@ for city, temp in temp_cold.items():
         print('가장 추웠던 도시는 :',city)
 
 
-#all_temp에 모든 기온을 모은다
-all_temp = []
-for city, value in cities_temp.items():
-    all_temp += value
-#all_temp에서 highest/lowest를 찾는다
-highest = max(all_temp)
-lowest = min(all_temp)
-print(highest, lowest)
-#cities_temp에서 highest/lowest가 속한 도시를 찾는다
-hottest = []
-coldest = []
-for key, value in cities_temp.items():
-    if highest in value:
-        hottest.append(key)
-    if lowest in value:
-        coldest.append(key)
-
+# 모범답안
+#
+# all_temp에 모든 기온을 모은다
+# 
+# all_temp = []
+# for city, value in cities_temp.items():
+#     all_temp += value
+# 
+# all_temp에서 highest/lowest를 찾는다
+# 
+# highest = max(all_temp)
+# lowest = min(all_temp)
+# print(highest, lowest)
+# 
+# cities_temp에서 highest/lowest가 속한 도시를 찾는다
+# 
+# list 타입으로 저장하는 방법
+#
+# hottest = []
+# coldest = []
+# for key, value in cities_temp.items():
+#     if highest in value:
+#         hottest.append(key)
+#     if lowest in value:
+#         coldest.append(key)
+#
+# str 타입으로 저장하는 방법 
+#
 # hottest = ''
 # coldest = ''
 # for key, value in cities_temp.items():
