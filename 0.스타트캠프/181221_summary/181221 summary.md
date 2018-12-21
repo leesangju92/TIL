@@ -128,4 +128,4 @@
   ```
 
 * `if __name__ == '__main__':
-  ​    app.run(debug=True, host='0.0.0.0',port=8080)` : debug빼고 로컬에선 쓰지 않는다.
+  ​    app.run(debug=True, host='0.0.0.0',port=8080)` : debug빼고 로컬에선 쓰지 않는다!
