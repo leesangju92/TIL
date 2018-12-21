@@ -194,13 +194,56 @@ print(result)
         
 ```
 
+### 3. 함수 호출
+
+```python
+math_functions.py
+
+print(__name__)
+
+def average(numbers):
+    return sum(numbers)/len(numbers)
+
+def cube(x):
+    return x*x*x
+
+def main():
+    my_score = [79,84,66,93]
+    print('평균:',average(my_score))
+    print(cube(3))
+
+if __name__ == '__main__':
+    main()
+```
+
+```python
+do_math.py
+
+print(__name__)
+
+# import math_functions
+# math_functions.cube(5)
+# math_functions.average([10,20,30])
+
+from math_functions import cube,average
+#여기서 import한 파일에서 print(__name__)하면 __main__이 아닌 해당 파일이름이 나온다.
 
 
 
+print(average([10,20,30]))
+print(cube(5))
 
-### 3. 
+```
 
+```python
+# import lotto_functions
+# lotto_functions.am_i_lucky(lotto_functions.pick_lotto(),lotto_functions.get_lotto() )
 
+from lotto_functions import am_i_lucky,get_lotto,pick_lotto
+
+result = am_i_lucky(pick_lotto(),get_lotto())
+print(result)
+```
 
 
 
@@ -235,4 +278,99 @@ print(result)
   #결과값 : [1,2,3] None
   ```
 
-* 
+* sudo pip3 install flask 
+
+* export FLASK_APP=app.py
+
+* from flask import Flask ,jsonify
+
+* app = Flask(__name__)
+
+* @app.route("/")
+
+* def index():
+
+  return 'Happy Hacking'
+
+
+
+flask run
+
+
+
+flask run -h 0.0.0.0 -p 8080
+
+
+
+run preview 클릭 running aplication
+
+
+
+오른쪽 상단
+
+pop out into new window
+
+
+
+ctrl + c
+
+
+
+@app.route("/")
+
+def index():
+
+return 'happy hacking'
+
+@app.route ("/hi")
+
+def hi():
+
+return 'hello ssafy'
+
+/hi하면 not found
+
+
+
+f6 끄고 키는거? 
+
+
+
+@app.route("/pick_lotto")
+
+def pick_lotto():
+
+return  'hmmmm'
+
+
+
+#random.sample(range(1,46),6)
+
+
+
+export FLASK_ENV=development
+
+이러면 저장할때마다 자동으로 껐다 켜짐
+
+flask run -h 0.0.0.0 -p 8080
+
+
+
+list는 바로 못 보여줌
+
+jsonify( )
+
+@app.route("/get_lotto")
+
+def get_lotto():
+
+data = {
+
+'numbers':[1,2,3,4,5],
+
+'bonus' : 7
+
+}
+
+주소창 get_lotto
+
