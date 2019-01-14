@@ -12,4 +12,5 @@
 * 만약 github에 업데이트 시키고 싶지 않은 파일이 있다면 `.gitignore`에 파일이름을 추가한다
 * 홈에 만드는 `.gitignore`은 컴퓨터 전체에 영향을 미친다.
 * `branch`를 github에 업로드 할때에는 `git push -u orgin branch명`을 꼭 처음에 해준다.
+* `git checkout branch명`
 
