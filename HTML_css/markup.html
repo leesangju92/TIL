@@ -126,7 +126,72 @@
                     <td></td>
                     <td rowspan="2">폴킴</td>
                 </tr>
-            </table>       
+            </table>
+            <hr>            
+            <h3> Form </h3>
+            <p>자기소개 하기</p>
+            <form action="./index.html">
+                <div>
+                이름 : <input name="name" type="text" placeholder="이름을 입력해라">
+                </div>
+                <div>
+                나이 : <input name="age" type="number">
+                </div>
+                <div>
+                phone : <input name="phone" type="text">
+                </div>
+                <div>
+                자기소개 : <textarea name="intro"></textarea>
+                </div>
+                <div>
+                <input type="submit">
+                </div>
+            </form>
+            <hr>
+            <p>주문서를 작성해주세요</p>
+            <form action="">
+                <div>
+                    이름: <input name="name" type="text" placeholder="이름을 입력해주세요">
+                </div>
+                <div>
+                    날짜: <input name="date" type="date" placeholder="날짜를 입력해주세요">
+                </div>
+                <p><strong>1. 샌드위치 선택 </strong></p>
+                <!-- 라디오? -->
+                <div>
+                    <input type="radio" name="stake">스테이크
+                    <input type="radio" name="stake">터키 아보카도
+                    <input type="radio" name="stake">미트볼
+                </div>
+                <p><strong>2. 사이즈 선택 </strong></p>
+                <div>
+                    <input type="number" placeholder="사이즈를 입력해주세요" min="15" max="30" step="15">
+                </div>
+                <p><strong>3. 빵 선택 </strong></p>
+                <!-- option -->
+                <div>
+                    <select>
+                        <option value="">빵선택</option>
+                        <option value="">파마산</option>
+                        <option value="">위트</option>
+                        <option value="">플랫 브래드</option>
+                    </select>
+                </div>
+                <p><strong>4. 소스 선택 </strong></p>
+                
+                <div>
+                    <input type="checkbox" name="hot chily">핫 칠리
+                    <input type="checkbox" name="sweet chily">스위트 칠리
+                    <input type="checkbox" name="ranch">랜치
+                    <input type="checkbox" name="mustard">홀스 래디쉬
+                    <input type="checkbox" name="sweetonion">스위트 어니언                 
+                </div>
+                <div>
+                     <input type="submit" value="Subway!">
+                </div>
+                
+            </form>
+
     </body>
 </html>
 
