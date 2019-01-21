@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        /* element중에 href attribute를 갖는 모든 요소 */
+        a[href] {
+            color: forestgreen
+        }
+        /* element중에 target이 blank인 모든 요소 */
+        a[target="_blank"]{
+            color: darkorchid
+        }
+        /* attribute 값에 First 문자열이 있다. */
+        p[title~="First"] {
+            color: deepskyblue;
+        }
+        /* second 와 바로 이어서 -가 오는 것 까지 잡음 */
+        p[title |="second"] {
+            color:darkcyan;
+        }
+        /* third로 시작하는  */
+        p[title^="third"] {
+            color: darkkhaki;
+        }
+         /*.net으로 끝나는*/
+        a[href $=".net"] {
+            color:lightpink;
+        }
+        /* title에 First가 포함되어있는 것*/
+        p[title*="First"] {
+            color:lightsalmon;
+        }
+    </style>
+</head>
+<body>
+    <a href="google.com">google</a>
+    <a href="naver.com" target="_blank">naver</a>
+    <a href="facebook.com">facebook</a>
+    <a href="ssafy.net">ssafy</a>
+    <a>???</a>
+    <hr>
+    <p title="First">I'm p</p>
+    <p title="second-p">I'm pp</p>
+    <p title="p-First">p I'm</p>
+    <p title="third">pp I'm</p>
+</body>
+</html> 

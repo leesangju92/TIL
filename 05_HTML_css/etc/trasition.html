@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <style>
+        div.circle {
+            width: 100px; height: 100px;
+            background: red;
+            transition: all 1s;
+        }
+
+        div.status-bar {
+            width: 200px; height: 50px; background-color: beige;
+            margin-bottom: 10px;
+            transition-property: width, background-color;
+            transition-duration: 0.5s, 2s
+        }
+
+        /* transition은 밑의 hover같은 trigger가 필요하다. */
+        div.circle:hover {
+            border-radius: 50%;
+            background: blue;
+        }
+
+        div.status-bar:hover {
+            width: 500px;
+            background-color: brown;
+        }
+    </style>
+</head>
+<body>
+    <div class="circle"> </div>
+    <div class="status-bar"></div>  
+</body>
+</html>

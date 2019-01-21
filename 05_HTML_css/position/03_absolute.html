@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <style>
+        body {
+            margin : 0;
+        }
+        .parent {
+            width : 200px;
+            height : 200px;
+            background-color: crimson;
+            border: 1px solid black;
+            margin: 50px 0 0 300px;
+            position: relative; 
+        }
+
+        /* 부모가 static만 아니면 비례해서 자리를 잡게 된다. 다만 부모와 조상이 static일 경우에는 그냥 설정한 값대로 절대적으로 움직인다.  */
+        .absolute-box {
+            position: absolute;
+            background-color: darkslateblue;
+            height: 200px;
+            width: 200px;
+            top: 50px;
+            left: 50px;
+            color: beige;
+            font-weight: bold;
+            text-align: center;
+            line-height: 150px;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="parent">
+        <div class="absolute-box">
+            absolute-box
+        </div>
+
+    </div>
+
+    <div class="absolute-box">
+        absolute-box no parent
+    </div>
+</body>
+</html>

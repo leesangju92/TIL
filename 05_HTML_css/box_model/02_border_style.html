@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="refresh" conent="1">
+    <style>
+        div {
+            background: crimson;
+            color: white;
+            display: inline-block;
+            width: 6rem;
+            height: 6rem;
+            line-height: 6rem;
+            margin : 0 1rem;
+            text-align: center;
+        }
+        .border-rounded {
+            /* 꼭지점 기준으로 0.5rem 떨어진 곳에 중심이 있는 원으로 테두리를 그린다 */
+            border-radius: 0.5rem;
+            padding:  1rem;
+        }
+        .border-circle {
+            border-radius: 50%;
+        }
+        .border-football{
+            border-radius: 1rem 5rem;
+        }
+
+        p {
+            background: palegreen;
+            padding: 10px;
+        }
+        p.dotted {border-style: dotted;}
+        p.dashed {border-style: dashed;}
+        p.solid {border-style: solid;}
+        p.double {border-style: double;}
+        p.groove {border-style: groove;}
+        p.ridge {border-style: ridge;}
+        p.inset {border-style: inset;}
+        p.outset {border-style: outset;}
+        p.none {border-style: none;}
+        p.hidden {border-style: hidden;}
+        p.mix {border-style: dotted dashed solid double;}
+    </style>
+</head>
+
+<body>
+    <div class="border-rounded">0.5rem</div>
+    <div class="border-circle">50%</div>
+    <div class="border-football">14px 75px</div>
+    <h2>border-style Property</h2>
+
+    <p class="dotted">dotted</p>
+    <p class="dashed">dashed</p>
+    <p class="solid">solid</p>
+    <p class="double">double</p>
+    <p class="groove">groove</p>
+    <p class="ridge">ridge</p>
+    <p class="inset">inset</p>
+    <p class="outset">outset</p>
+    <p class="none">none</p>
+    <p class="hidden">hidden</p>
+    <p class="mix">dotted dashed solid double</p>
+</body>
+
+</html>
+<!-- alt + shift + f 하면 자동으로 indenting 맞춰준다. -->

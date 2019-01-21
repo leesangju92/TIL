@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        /* *는 head까지 포함한 전체 */
+        body {
+            text-align: center;
+            font-size: 14px
+        }
+        .container {
+            /* 브라우저값(14) * 75 */
+            width: 75rem;
+        }
+        div.pixel {
+            font-size: 120%;
+            font-weight: bold;
+            padding: 2em;
+            background-color: dodgerblue;
+        }
+        /* rem은 root의 em 즉 브라우저의 설정값에 1.2를 곱한 값 */
+        .rem {
+            font-size: 1.2rem;
+            font-weight: bold;
+            padding: 2em;
+        }
+        /* em은 부모 기준 */
+        .em {
+            font-size: 1.2em;
+            font-weight: bold;
+            padding: 2em;
+        }
+        .box1 {
+            background-color: rgb(0 ,0, 255, 0.2);
+        }
+        .box2 {
+            background-color: rgb(0 ,0, 255, 0.4);
+        }
+        .box3 {
+            background-color: rgb(0 ,0, 255, 0.6);
+        }
+    </style>
+</head>
+<body>
+    <article class="container">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</article>   
+    <div class="box1 rem">
+            Font size : 14px*1.2 = 16.8px
+            <div class="box2 rem">
+                Font size : 14px*1.2*1.2
+                <div class="box3 rem">Font size : 14px*1.2*1.2*1.2</div>
+            </div>
+    </div>
+    <hr>  
+    <div class="box1 em">
+        Font size : 14px*1.2 = 16.8px
+        <div class="box2 em">
+            Font size : 14px*1.2*1.2
+            <div class="box3 em">Font size : 14px*1.2*1.2*1.2</div>
+        </div>
+    </div>
+        
+            
+    <a>Font size : 14px</a>
+    <hr>
+    <div class="pixel">Font size : 14px*120% = 16.8px</div>
+    <hr>
+    <div class="em">Font size : 14px*1.2 = 16.8px</div>
+</body>
+</html>

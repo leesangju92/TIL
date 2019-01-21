@@ -1,0 +1,64 @@
+a {
+    color: red;    
+}
+
+.bio-box a {
+    color: green;
+}
+
+/* 명시적이고 짧을수록 좋은 것 */
+
+
+#exec-bio {
+    background-color: lightgray;
+
+}
+
+body .bio-box {
+    border: 1px solid blue;
+}
+
+.bio-box {
+    border: 1px solid darkkhaki;
+}
+
+
+
+#link-google {
+    background-color: orange;
+}
+
+.bio-box.azure {
+    background-color: aqua;
+}
+
+.alert {
+    background-color: purple;
+}
+
+/* bad example */
+body div#exec-bio.bio-box {
+    color: aliceblue
+}
+
+
+
+/* 어떻게 보여질지에 대해 이름을 지으면 안된다. 나중에 애로사항이 생긴다.*/
+
+/* 너무 포괄적인 이름도 안됨 */
+
+/* 어떤 기능으로 지은 이름인가? 어떤 의도로 지은 이름인가? */
+
+/* 명시도 : !important > in-line > media커리? > 사용자가 정의한 브라우저 설정 > id > class > css문서상의 순서(마지막이 우선순위)
+             > 상속 > 그냥 naive한 selecing 태그 > default 브라우저 설정 */
+
+
+
+/* 아무 a tag를 잡아서 아무 id를 주고, id로 select를 하여 배경색 orange를 주세요 */
+/* 모든 .bio-box 클래스를 가진 요소들에 추가로 아무 class를 주고, class로 select하여 배경색 azure을 적용하자 */
+
+
+/* declare
+selector property(속성) 값  */
+
+/* div { border: 1px solid black; } */

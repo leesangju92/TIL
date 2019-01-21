@@ -1,0 +1,178 @@
+<!-- 마우스가 올라갔을 때 같이 특정 상황에서 스타일 적용되도록 하는 것 -->
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        /* a에 마우스를 올리면 */
+        a:hover {
+            font-weight: bold;
+        }
+        /* input에 포커스가 가면 */
+        input:focus {
+            background-color: blue;
+        }
+/* link pseudo selector, user action pseudo selector */
+
+        /* a링크를 방문하지 않았을 때 */
+        a:link{
+            color:deeppink;
+        }
+        /* a링크를 방문했을때 */
+        a:visited {
+            color: black;
+        }
+        /* a요소를 클릭하고 있는 상태일때 */
+        a:active {
+            color: darkgoldenrod
+        }
+        /* input 타입이 text, password인 애들이 focus되었을때 */
+        input[type="text"]:focus,
+        input[type="password"]:focus {
+            color: red;
+        }
+/* UI element state pseudo selector */
+        /* input이 사용가능할때 바로 뒤에오는 형제 span element를 선택 */
+        input:enabled + span {
+            color:green;
+        }
+        /* input이 사용 불가능할때 바로 뒤에오는 형제 span element를 선택 */
+        input:disabled + span {
+            color:greenyellow;
+            text-decoration: line-through;
+        }
+        /* input이 체크상태일때 바로 뒤에오는 span element를 선택 */
+        input:checked + span {
+            color:orange;
+        }
+/* structural pseudo selector */
+        /* 첫번째 자식이 p 일때*/
+        p:first-child {
+            color:silver;
+        }
+        /*  가장 마지막 자식이 p 일때 */
+        p:last-child {
+            color:gold;
+        }
+        /* ol의 자식 요소 중에서 짝수번째가 li면 선택(0부터시작) */
+        ol > li:nth-child(2n) {
+            color:indigo;
+        }
+        /* ol의 자식 요소 중에서 홀수번째가 li면 선택 */
+        ol > li:nth-child(2n+1) {
+            color:olive;
+        }
+        /* ol의 자식 요소 중에서 첫번째가 li면 선택 */
+        ol > li:first-child {
+            color:orangered;
+        }
+        /* ol의 자식 요소 중에서 마지막 번째가 li면 선택 */
+        ol > li:last-child {
+            color:slategrey;
+        }
+        /* ol의 자식 중에 4번째가 li라면 */
+        ol > li:nth-child(4) {
+            background-color: brown;
+        }
+        /* ul의 모든 자식중에 뒤에서부터 홀수번째 요소를 선택 */
+        ul > :nth-last-child(2n+1) {
+            color:cornsilk;
+        }
+        /* ul의 모든 자식중에 뒤에서부터 짝수번째 요소를 선택 */
+        ul > :nth-last-child(2n) {
+            color:deepskyblue;
+        }
+        /* ul의 모든 자식중에 뒤에서부터 첫번째 요소를 선택 */
+        ul > :nth-last-child(1) {
+            background-color:olivedrab;
+        }
+        /* ?? 요소의 부모 요소의 자식요소중 첫번째 등장하는 ?? */
+        p:first-of-type {
+            background-color:wheat;
+        }
+        /* ?? 요소의 부모 요소의 자식요소중 마지막번째 등장하는 ?? */
+        p:last-of-type {
+            background-color: peru;
+        }
+        p:nth-of-type(2) {
+            color:teal;
+        }
+        p:nth-last-of-type(2) {
+            color:lightgray
+        }
+        p:first-child {
+            background-color: blueviolet
+        }
+/* negation pseudo selector (부정 콜렉터) */
+        input:not([type="password"]) {
+            background: black;            
+        }
+    </style>
+</head>
+<body>
+
+    <p>이 p태그는 부모(body)의 첫째 자식입니다.</p>
+
+    <h1>welcome to my homepage</h1>
+    <p>이 p태그는 부모(body)의 첫째 자식도 마지막 자식도 아닙니다.</p> 
+    <div>
+        <p>이 p태그는 부모(div)의 첫째 자식입니다.</p>
+        <p>이 p태그는 부모(div)의 마지막 자식입니다.</p> 
+    </div>
+
+    <div>
+        <h2>This is Heading2</h2>
+        <p class="first">첫 번째 문단</p>
+        <p>두 번째 문단</p>
+        <p>세 번째 문단</p>
+        <p>네 번째 문단</p>
+        <div>
+            <h3>This is Heading3</h3>
+            <p>첫 번째 문단</p>
+            <p>두 번째 문단</p>
+            <p>세 번째 문단</p>
+            <p>네 번째 문단</p>
+        </div>
+    </div>
+
+
+    <div>
+        <ol>
+            <li>Espresso</li>
+            <li>Americano</li>
+            <li>Caffelatte</li>
+            <li>Caffemocha</li>
+            <li>caramel latte</li>
+            <li>capuccino</li>
+        </ol>
+
+        <ul>
+            <li>Espresso</li>
+            <li>Americano</li>
+            <li>Caffelatte</li>
+            <li>Caffemocha</li>
+            <li>caramel latte</li>
+            <li>capuccino</li>
+        </ul>
+    </div>
+    <!-- #은 미완성의 의미 -->
+    <a href="#">Hover me</a>
+    <br><br>
+    <input type="text" placeholder="Focus me">
+
+    <div>
+        <input type="text" value="I'll be red when focused">
+        <input type="password" value="i'll be red when focused">
+    </div>
+    <hr>
+    <form action="">
+        <input type="radio" value="메뉴A" checked="checked"><span>순두부</span><br>
+        <input type="radio" value="메뉴B"><span>바베큐폭챱</span><br>
+        <input type="radio" value="굶기" disabled><span>쫄쫄굶기</span><br>
+    <hr>
+        <input type="checkbox" value="taxi" checked="checked"><span>집에 택시</span><br>
+        <input type="checkbox" value="BM"><span>집에 대중교통</span><br>
+        <input type="checkbox" value="walk" disabled><span>집에 걸어가기</span><br>
+    </form>
+    <p>이 p태그는 부모(body)의 마지막 자식입니다.</p> 
+</body>
+</html>

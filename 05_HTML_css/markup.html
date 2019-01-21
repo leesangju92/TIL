@@ -10,6 +10,46 @@
         </style>
     </head>
     <body>
+            <h1>Comming soon..</h1>
+            <img src="animals/bum.jpg" alt="killerWhale" width = 300px height = 300px>
+            <ul>
+                <li>HTML</li>
+                <li>CSS</li>
+            </ul>
+            
+            <p>
+                <i>This</i> <em>is</em> <b>SSAFY</b> <strong>1st</strong>    
+                <!-- em과 strong이 cimentic적으로 옳다. -->
+            </p>
+            
+            <blockquote>
+                Real Artist ship 인용문
+            </blockquote>
+            
+            <!-- <header></header><nav></nav><aside></aside>
+            <section>
+                <article></article>
+                <article></article>
+            </section> -->
+            <table>
+                <thead>
+                    <td>점심메뉴</td>
+                </thead>
+                <th>
+                    <tr>
+                    요일
+                    </tr>
+                    <tr>
+                    메뉴
+                    </tr>
+                    <tr>
+                    과자
+                    </tr>
+                </th>
+
+
+
+            </table>        
         <h1>프로그래밍 교육</h1>
         <a href="https://ko.wikipedia.org/wiki/%ED%8C%8C%EC%9D%B4%EC%8D%AC" target="_blank">
             <p>
@@ -157,34 +197,32 @@
                     날짜: <input name="date" type="date" placeholder="날짜를 입력해주세요">
                 </div>
                 <p><strong>1. 샌드위치 선택 </strong></p>
-                <!-- 라디오? -->
                 <div>
-                    <input type="radio" name="stake">스테이크
-                    <input type="radio" name="stake">터키 아보카도
-                    <input type="radio" name="stake">미트볼
+                    <input type="radio" name="sandwich" value="1">스테이크
+                    <input type="radio" name="sandwich" value="2">터키 아보카도
+                    <input type="radio" name="sandwich" value="3">미트볼
                 </div>
                 <p><strong>2. 사이즈 선택 </strong></p>
                 <div>
-                    <input type="number" placeholder="사이즈를 입력해주세요" min="15" max="30" step="15">
+                    <input type="number" placeholder="사이즈를 입력해주세요" value="15" min="15" max="30" step="15">
                 </div>
                 <p><strong>3. 빵 선택 </strong></p>
-                <!-- option -->
                 <div>
                     <select>
-                        <option value="">빵선택</option>
-                        <option value="">파마산</option>
-                        <option value="">위트</option>
-                        <option value="">플랫 브래드</option>
+                        <option name="bread" value="1">파마산</option>
+                        <option name="bread" value="2">위트</option>
+                        <option name="bread" value="3">플랫 브래드</option>
+                        <option name="bread" value="4">허니 오트</option>
                     </select>
                 </div>
                 <p><strong>4. 소스 선택 </strong></p>
                 
                 <div>
-                    <input type="checkbox" name="hot chily">핫 칠리
-                    <input type="checkbox" name="sweet chily">스위트 칠리
-                    <input type="checkbox" name="ranch">랜치
-                    <input type="checkbox" name="mustard">홀스 래디쉬
-                    <input type="checkbox" name="sweetonion">스위트 어니언                 
+                    <input type="checkbox" name="source" value="1">핫 칠리
+                    <input type="checkbox" name="source" value="2">스위트 칠리
+                    <input type="checkbox" name="source" value="3">랜치
+                    <input type="checkbox" name="source" value="4">홀스 래디쉬
+                    <input type="checkbox" name="source" value="5">스위트 어니언                 
                 </div>
                 <div>
                      <input type="submit" value="Subway!">
