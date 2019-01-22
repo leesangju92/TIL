@@ -223,5 +223,12 @@ WHERE col_name LIKE 'pattern'
 
 
 
+## Ⅱ 기타
 
+https://gist.github.com/sagsn0202/a4f6608521f48261ff81e63057fc8441
 
+https://poiemaweb.com/
+
+https://www.w3schools.com/
+
+https://daneden.github.io/animate.css/
