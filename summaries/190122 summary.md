@@ -8,6 +8,8 @@
 
 > 모델링. 자료의 구조형, 다른 형태의 자료가 들어와 구조가 깨지는 것을 방지 
 
+
+
 #### (2) 실행순서
 
 ```bash
@@ -32,6 +34,7 @@ $ sqlite3 파일명.확장자
 | `.import <file.name> <tabel_name>`<br />만약 데이터형이 다르더라도 해당줄만 오류뜨고 다른줄은  정상적으로 import된다. | 해당 파일의 데이터를 지정한 테이블에 import |
 | `.schema`  또는 `.schema 파일명.확장자`                      | 스키마 전체 보기                            |
 | `.table`                                                     | 가지고 있는 테이블 전부 다 보기             |
+| `.nullvalue NULL`                                            | NULL이 진짜 NULL이 되는 것                  |
 
 ```sqlite
 .read create_table.sql	
@@ -39,8 +42,6 @@ $ sqlite3 파일명.확장자
 .mode csv
 .import users.csv users
 ```
-
-
 
 
 
@@ -54,6 +55,8 @@ $ sqlite3 파일명.확장자
 
 ### 2. Table 조작관련
 
+
+
 #### (1) Table 생성
 
 ```sqlite
@@ -65,11 +68,15 @@ CREATE TABLE <table_name> (
 );
 ```
 
+
+
 #### (2) Table( + 레코드 모두) 삭제
 
 ```sqlite
 DROP TABLE <table_name>;
 ```
+
+
 
 #### (3) Table 이름 수정
 
@@ -78,7 +85,18 @@ ALTER TABLE <table_name>
 RENAME TO <new_table_name>;
 ```
 
+​				
+
 #### (4) Table 컬럼 추가
+
+```sqlite
+ALTER TABLE table_name
+ADD COLUMN new_col_name DATATYPE;
+--디폴트값 설정
+ADD COLUMN new_col_name DATATYPE DEFAULT default;
+
+
+```
 
 
 
@@ -103,6 +121,8 @@ VALUES (401);
 
 
 ### 3. Data 조작 관련
+
+
 
 #### (1) Data 생성
 
@@ -140,8 +160,6 @@ SELECT menu1, menu2 FROM menus WHERE id=1;
 SELECT *  FROM menus WHERE id=1;  
 ```
 
-
-
 ##### 특정조건으로 전체 컬럼 조회
 
 ```sqlite
@@ -152,8 +170,18 @@ SELECT * FROM table_name WHERE condition
 
 ```sqlite
 UPDATE <table_name>
-SET <col_1>=<val_1>, <col_2>=<val_2>, ...
+SET <col_1>=<new_val_1>, <col_2>=<new_val_2>, ...
 WHERE [condition]; -- 보통 primary key (id) 로 선택
+```
+
+```sqlite
+UPDATE timetable
+   ...> SET test=0
+   ...> WHERE id IN (1,2,3);
+```
+
+```sqlite
+UPDATE timetable SET test=0;
 ```
 
 ##### Data 삭제
@@ -186,12 +214,16 @@ SELECT MIN(col) FROM table_name;
 SELECT MAX(col) FROM table_name;
 ```
 
+
+
 ### 5. 정렬(Order)
 
 ```sqlite
 SELECT col_name FROM table_name
 ORDER BY col1_name, col2_name ASC 또는 DESC;
 ```
+
+
 
 ### 6. 제한(Limit)
 
@@ -200,11 +232,19 @@ SELECT col_name FROM table_name
 LIMIT number
 ```
 
+
+
 ### 7. 패턴(Pattern)
 
 ```sqlite
 SELECT * FROM table_name
 WHERE col_name LIKE 'pattern'
+```
+
+```sqlite
+sqlite> UPDATE timetable
+   ...> SET project=1
+   ...> WHERE calendar LIKE "19%";
 ```
 
 | 시작 | 예시    | 설명                                  |
@@ -219,11 +259,7 @@ WHERE col_name LIKE 'pattern'
 
 
 
-
-
-
-
-## Ⅱ 기타
+## Ⅱ. 기타
 
 https://gist.github.com/sagsn0202/a4f6608521f48261ff81e63057fc8441
 
