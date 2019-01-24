@@ -132,7 +132,7 @@ ON previous_query.customer_id = customers.customer_id;
 
 > `$ pip install djangjo`
 >
-> `$ django-admin`
+> `$ django-admin help ` 		
 >
 > `$ django-admin startproject first_django`
 >
@@ -177,37 +177,51 @@ ON previous_query.customer_id = customers.customer_id;
 #### settings.py
 
 > ```python
-> TEMPLATES_DIR = os.path.join(BASE_DIR, "templates")
+> TEMPLATES_DIR = os.path.join(BASE_DIR, "templates") #추가해야한다
 > 
 > ALLOWED_HOSTS = [
->     "django-leesangju92.c9users.io",
+>  "django-leesangju92.c9users.io",
 > ]
 > 
+> #ALLOWED_HOSTS = ["*"]	
+> 
+> 
 > INSTALLED_APPS = [
->     'django.contrib.admin',
->     'django.contrib.auth',
->     'django.contrib.contenttypes',
->     'django.contrib.sessions',
->     'django.contrib.messages',
->     'django.contrib.staticfiles',
->     'home', #이것을 추가한다.
+>  'django.contrib.admin',
+>  'django.contrib.auth',
+>  'django.contrib.contenttypes',
+>  'django.contrib.sessions',
+>  'django.contrib.messages',
+>  'django.contrib.staticfiles',
+>  'home', #이것을 추가한다.
 > ]
 > 
 > TEMPLATES = [
->     {
->         'BACKEND': 'django.template.backends.django.DjangoTemplates',
->         'DIRS': [TEMPLATES_DIR], #이것을 추가한다.
->         'APP_DIRS': True,
->         'OPTIONS': {
->             'context_processors': [
->                 'django.template.context_processors.debug',
->                 'django.template.context_processors.request',
->                 'django.contrib.auth.context_processors.auth',
->                 'django.contrib.messages.context_processors.messages',
->             ],
->         },
->     },
+>  {
+>      'BACKEND': 'django.template.backends.django.DjangoTemplates',
+>      'DIRS': [TEMPLATES_DIR], #이것을 추가한다.
+>      'APP_DIRS': True,
+>      'OPTIONS': {
+>          'context_processors': [
+>              'django.template.context_processors.debug',
+>              'django.template.context_processors.request',
+>              'django.contrib.auth.context_processors.auth',
+>              'django.contrib.messages.context_processors.messages',
+>          ],
+>      },
+>  },
 > ]
+> 
+> LANGUAGE_CODE = 'ko-kr'
+> 
+> TIME_ZONE = 'Asia/Seoul'
+> 
+> USE_I18N = True
+> 
+> USE_L10N = True
+> 
+> USE_TZ = True
+> 
 > ```
 
 #### 주의사항
