@@ -6,11 +6,14 @@ clues = ( 2, 2, 1, 3,
 
 def solve_puzzle (clues):
     answer=[
-        [[1,2,3,4],[1,2,3,4],[1,2,3,4],[1,2,3,4]],
-        [[1,2,3,4],[1,2,3,4],[1,2,3,4],[1,2,3,4]],
-        [[1,2,3,4],[1,2,3,4],[1,2,3,4],[1,2,3,4]],
-        [[1,2,3,4],[1,2,3,4],[1,2,3,4],[1,2,3,4]],
+        [list(range(1,5)), list(range(1,5)), list(range(1,5)), list(range(1,5))],
+        [list(range(1,5)), list(range(1,5)), list(range(1,5)), list(range(1,5))],
+        [list(range(1,5)), list(range(1,5)), list(range(1,5)), list(range(1,5))],
+        [list(range(1,5)), list(range(1,5)), list(range(1,5)), list(range(1,5))]
         ]
+
+# 확실한 숫자 입력
+
     i = 0
     for clue in clues:
         if i < 4:
@@ -27,18 +30,20 @@ def solve_puzzle (clues):
                 answer[15-i][0] = 4
         i += 1
 
+# 숫자 후보 제거
+
     for num_set in answer:
         a = 0
-        for num_list in num_set:
-            if num_list != 4:
+        for number in num_set:
+            if type(number) != type(4):
                 a += 1
             else:
-                for num_list1 in num_set:
-                    if type(num_list1) == type([]) and 4 in num_list1:
-                        num_list1.remove(4)
+                for num_list in num_set:
+                    if type(num_list) == type([]) and number in num_list:
+                        num_list.remove(number)
                 for n in range(3):
-                    if type(answer[n][a]) == type([]) and 4 in answer[n][a]:
-                        answer[n][a].remove(4)
+                    if type(answer[n][a]) == type([]) and number in answer[n][a]:
+                        answer[n][a].remove(number)
                             
 
 
@@ -81,7 +86,7 @@ def solve_puzzle (clues):
     return answer
 
 print(solve_puzzle(clues))
-
+print()
 
 
 # outcomes = (
