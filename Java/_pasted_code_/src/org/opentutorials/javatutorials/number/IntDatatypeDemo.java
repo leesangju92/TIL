@@ -8,7 +8,7 @@ public class IntDatatypeDemo {
 		
 		byte district = 1;
 		int population = 50000000; //byte popualtion = 50000000;은 에러가 뜬다.
-		
+			
 	}
 
 }
