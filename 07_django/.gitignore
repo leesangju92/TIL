@@ -1,0 +1,6 @@
+base_prj/venv/
+*.sqlite3
+base_prj/.idea/
+base_prj/__pycache__
+base_prj/media
+	
