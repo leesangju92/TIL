@@ -1,0 +1,12 @@
+{% extends "facebook/base.html" %}
+
+{% block body %}
+
+    <div class="row">
+        {% for newsfeed in newsfeeds %}
+            <div class="col-12 col-md-4">
+                <a href="{% url 'facebook:detail' newsfeed.id %}">{{ newsfeed.title }} : {{ newsfeed.content }}</a>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}
