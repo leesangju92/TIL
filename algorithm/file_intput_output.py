@@ -1,6 +1,7 @@
 import sys
 sys.stdin = open("input1.txt", "r")  #해당 파일로부터 input 받음
 sys.stdout = open("output1.txt", "w") #해당 파일로 출력하여 저장
+# \\70.12.107.120 공유폴더
 
 
 T = int(input())

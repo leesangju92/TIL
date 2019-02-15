@@ -2,6 +2,16 @@ import sys
 sys.stdin = open("input.txt", "r")  #해당 파일로부터 input 받음
 # sys.stdout = open("output.txt", "w") #해당 파일로 출력하여 저장
 
+# for test_case in range(1,11):
+#     N = int(input())
+#     arr = list(map(int, input().split()))
+#     answer = 0
+#     for i in range(2, N-2):
+#         maxH = max(arr[i - 2], arr[i -1 ], arr[i + 1], arr[i +2 ])
+#         if arr[i] > maxH:
+#             answer += (arr[i] - maxH)
+#     print f"#{test_case} {answer}"
+
 
 for case in range(10):
     result = 0
@@ -26,3 +36,6 @@ for case in range(10):
             else:
                 result += left
     print(f"#{case+1} {result}")
+
+
+
