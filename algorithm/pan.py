@@ -41,8 +41,12 @@ for t in range(T):
     seven_dict = {}
     for location in location_list:
         result = str(square[location[0]][location[1]])
+        seven_dict[result] = 1
         #뒤에 숫자 6개 붙이기
         for i in range(6):
+            for key in seven_dict:
+                if int(len(key)) == int(i)+1:
+                    location
 
 
 
