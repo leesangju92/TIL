@@ -11,10 +11,26 @@ def distance(locations, route, N):
     distance_btw += abs(locations[1][0] - locations[route[-1]][0] ) + abs(locations[1][1] - locations[route[-1]][1] )
     return distance_btw
 
-# def start(company):
-
-
-
+def start(company):
+    visited = []
+    course = []
+    for next in route[company]:
+        course += [next]
+        next_customer = next
+        for customer in route[next_customer]:
+            if customer in course:
+                continue
+            else:
+                course += [customer]
+                next_customer = customer
+                break
+        if len(course) == 5:
+            visited += [course]
+        print(course)
+        print(visited)
+        if course in visited:
+            course.pop(-1)
+    return visited
 
 
 
@@ -30,8 +46,11 @@ for test_case in range(1):
     route = [list(range(2,N+2))] + [0] + [ list(set(list(range(2, N+2))) - set([i]) ) for i in range(2, N+2) ]
     visited = []
     courses = []
-    start(0)
-    print(route)
+    print(start(0))
+    
+    # print(route)
+
+    
 
     # customers = list(range(2,N+2))
     # routes = []
