@@ -35,4 +35,3 @@ for test_case in range(1, T+1):
     for n in range(N):
         arr += [list(map(int, input().split()))]
     move = [0]*N*2
->>>>>>> c745e37c51f11777bd4aaf75f647b86c5f30ac40
