@@ -1,0 +1,22 @@
+{% extends "myway/base.html"%}
+
+{% block body %}
+    <h1>Editing Previous Post</h1>
+    <form method="post">
+    {% csrf_token %}
+        <div>
+        <label for="edited_title"></label>
+        <input type="text" id="edited_title" name="title" value={{ posting.title }}>
+        </div>
+        <div>
+        <label for="edited_content"></label>
+        <textarea name="content" id="edited_content" cols="30" rows="10">{{ posting.content }}</textarea>
+        </div>
+
+        <div>
+            <button type="submit"> EDIT! </button>
+        </div>
+
+    </form>
+
+{% endblock %}
