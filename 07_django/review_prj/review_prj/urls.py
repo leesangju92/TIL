@@ -20,4 +20,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path("board/", include('Board.urls')),
     path("netflix/", include("Netflix.urls")),
+    path("myway/", include("myway.urls")),
 ]
