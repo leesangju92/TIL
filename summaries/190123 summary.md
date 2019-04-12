@@ -243,3 +243,5 @@ ON previous_query.customer_id = customers.customer_id;
 | `alt+w` | 탭 닫기                 |
 | `alt+s` | 탭 이동(메인과 터미널 ) |
 
+ SELECT name FROM mton_lecture JOIN mton_enrolment ON mton_lecture.id = mton_enrolment.lecture_id WHERE
+ student_id = 1;
