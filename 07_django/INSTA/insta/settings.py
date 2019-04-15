@@ -40,6 +40,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     "django_extensions",
     "posts",
+    "otoo",
+    "otom",
 
 ]
 

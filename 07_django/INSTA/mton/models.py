@@ -13,9 +13,9 @@ class Student(models.Model):
 
 class Client(models.Model):
     name = models.CharField(max_length=40)
-
-    class Meta:
-        ordering = ("name", )
+    #
+    # class Meta:
+    #     ordering = ("name", )
 
     @classmethod
     def dummy(cls, N):
@@ -43,10 +43,6 @@ class Lecture(models.Model):
 class Enrolment(models.Model):
     student = models.ForeignKey(Student, on_delete=models.CASCADE)
     lecture = models.ForeignKey(Lecture, on_delete=models.CASCADE)
-
-
-
-
 
 
 
