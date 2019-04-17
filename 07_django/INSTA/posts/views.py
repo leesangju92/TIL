@@ -1,8 +1,10 @@
-from django.shortcuts import render, redirect, get_object_or_404
+from django.shortcuts import redirect, render, get_object_or_404
 from django.views.decorators.http import require_GET, require_POST, require_http_methods
 from .models import Post, Image
-from .forms import PostModelForm, ImageModelForm
+from .forms import PostModelForm, ImageModelForm, CommentModelForm
 from django.contrib.auth.decorators import login_required
+from django.forms import HiddenInput
+
 
 @login_required()
 @require_http_methods(['GET', 'POST'])
@@ -14,9 +16,11 @@ def create_post(request):
         # Data 검증을 한다.
         if post_form.is_valid():
             # 통과하면 저장한다.
-            post = post_form.save()
+            post = post_form.save(commit=False)
+            post.user = request.user
+            post.save()
             for image in request.FILES.getlist("file"):
-                request.FILES["file"] = image # 딕셔너리 자료형으로 추측된다.
+                request.FILES["file"] = image  # 딕셔너리 자료형으로 추측된다.
                 image_form = ImageModelForm(files=request.FILES)
                 if image_form.is_valid():
                     # image = Image()
@@ -40,30 +44,47 @@ def create_post(request):
         "image_form": image_form,
     })
 
+
 # @login_required()
 @require_GET
 def post_list(request):
     posts = Post.objects.all()
-    return render(request, 'posts/list.html', {'posts': posts})
+    comment_form = CommentModelForm()
+    return render(request, 'posts/list.html', {'posts': posts, "comment_form":comment_form, })
 
 
 @login_required()
 @require_http_methods(["GET", "POST"])
 def update_post(request, post_id):
     post = get_object_or_404(Post, id=post_id)
-    if request.method == "POST":
-        post_form = PostModelForm(request.POST, request.FILES, instance=post)
-        if post_form.is_valid():
-            post_form.save()
-            return redirect("insta:post_list")
+    if post.user == request.user:  # 지금 수정하려는 요청 보낸 사람이 작성자인지 확인
+        if request.method == "POST":
+            post_form = PostModelForm(request.POST, request.FILES, instance=post)
+            if post_form.is_valid():
+                post_form.save()
+                return redirect("insta:post_list")
         else:
-            pass
-    else:
-        post_form = PostModelForm(instance=post)
-    return render(request, "posts/form.html", {
-        "post_form": post_form,
-    })
+            post_form = PostModelForm(instance=post)
+        return render(request, "posts/form.html", {"post_form": post_form, })
+    else:  # 작성자와 요청 보낸 유저가 다를 경우
+        # 에러코드 403 : forbidden
+        return redirect("insta:post_list")
 
 
 def post_detail(request, post_id):
     pass
+
+
+@login_required()
+@require_http_methods(["POST"])
+def create_comment(request, post_id):
+    post = get_object_or_404(Post, id=post_id)
+    if request.method == "POST":
+        comment_form = CommentModelForm(request.POST)
+        if comment_form.is_valid():
+            comment = comment_form.save(commit=False)
+            comment.user = request.user
+            comment.post = post
+            comment.save()
+            return redirect("insta:post_list")
+        # TODO: else => comment가 유효하지 않다면 어떻게 해야하지?

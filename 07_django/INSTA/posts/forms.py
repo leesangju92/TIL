@@ -1,11 +1,11 @@
 from django import forms
-from .models import Post, Image
+from .models import Post, Image, Comment
 
 
 class PostModelForm(forms.ModelForm):
     class Meta:
         model = Post
-        fields = "__all__"
+        fields = ["content", ]
 
 
 class ImageModelForm(forms.ModelForm):
@@ -13,5 +13,10 @@ class ImageModelForm(forms.ModelForm):
         model = Image
         fields = ["file", ]
         widgets = {
-            "file" : forms.FileInput(attrs={"multiple": True})
+            "file": forms.FileInput(attrs={"multiple": True})
         }
+
+class CommentModelForm(forms.ModelForm):
+    class Meta:
+        model = Comment
+        fields = ["content", ]
