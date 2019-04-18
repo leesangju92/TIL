@@ -41,8 +41,9 @@ INSTALLED_APPS = [
     "django_extensions",
     "posts",
     # "otoo",
-    "otom",
+    # "otom",
     "accounts",
+    "mton",
 
 ]
 
