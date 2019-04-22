@@ -1,6 +1,7 @@
-from django.shortcuts import redirect, render, get_object_or_404
+from django.shortcuts import redirect, render, get_object_or_404, HttpResponseRedirect
 from django.views.decorators.http import require_GET, require_POST, require_http_methods
-from .models import Post, Image
+from .models import Post, Image, Hashtag
+from django.contrib import messages
 from .forms import PostModelForm, ImageModelForm, CommentModelForm
 from django.contrib.auth.decorators import login_required
 from django.forms import HiddenInput
@@ -19,6 +20,21 @@ def create_post(request):
             post = post_form.save(commit=False)
             post.user = request.user
             post.save()
+
+            # create hashtag >> <input name = "tags"/> #SSAFY #HI #20층
+
+            content = post_form.cleaned_data.get("content")
+            words = content.split(" ") # 띄어쓰기 기준으로 split
+
+            for word in words:
+                if len(word) <= 21:
+                    if word[0] == "#":
+                        word = word[1:]
+                        tag = Hashtag.objects.get_or_create(content=word)
+                        post.hashtags.add(tag[0])
+                        if tag[1]:
+                            messages.add_message(request, messages.SUCCESS, f"{tag[0].content}를 새롭게 추가하셨습니다.")
+
             for image in request.FILES.getlist("file"):
                 request.FILES["file"] = image  # 딕셔너리 자료형으로 추측된다.
                 image_form = ImageModelForm(files=request.FILES)
@@ -50,7 +66,7 @@ def create_post(request):
 def post_list(request):
     posts = Post.objects.all()
     comment_form = CommentModelForm()
-    return render(request, 'posts/list.html', {'posts': posts, "comment_form":comment_form, })
+    return render(request, 'posts/list.html', {'posts': posts, "comment_form":comment_form, "h1":"Post", })
 
 
 @login_required()
@@ -62,6 +78,18 @@ def update_post(request, post_id):
             post_form = PostModelForm(request.POST, request.FILES, instance=post)
             if post_form.is_valid():
                 post_form.save()
+                post.hashtags.clear()
+                content = post_form.cleaned_data.get("content")
+                words = content.split(" ")  # 띄어쓰기 기준으로 split
+
+                for word in words:
+                    if word[0] == "#":
+                        word = word[1:]
+                        tag = Hashtag.objects.get_or_create(content=word)
+                        post.hashtags.add(tag[0])
+                        if tag[1]:
+                            messages.add_message(request, messages.SUCCESS, f"{tag[0].content}를 새롭게 추가하셨습니다.")
+
                 return redirect("insta:post_list")
         else:
             post_form = PostModelForm(instance=post)
@@ -86,5 +114,29 @@ def create_comment(request, post_id):
             comment.user = request.user
             comment.post = post
             comment.save()
-            return redirect("insta:post_list")
+            return HttpResponseRedirect(request.META.get("HTTP_REFERER", "/insta/"))
         # TODO: else => comment가 유효하지 않다면 어떻게 해야하지?
+
+
+@login_required()
+@require_POST
+def toggle_like(request, post_id):
+    user = request.user
+    post = get_object_or_404(Post, id=post_id)
+
+    if user in post.like_users.all():
+        post.like_users.remove(user)
+    else:
+        post.like_users.add(user)
+    return HttpResponseRedirect(request.META.get("HTTP_REFERER", "/insta/"))
+
+    # if post.like_users.filter(id=user.id): # 있으면 value가 무엇인가로 나올 것이다. 없으면 그냥 None
+    #     post.like_users.remove(user)
+    # pass
+
+@require_GET
+def hashtag_posts_list(request, hashtag_content):
+    hashtag = get_object_or_404(Hashtag, content=hashtag_content)
+    hashtag_posts = hashtag.posts.all()
+    comment_form = CommentModelForm()
+    return render(request, 'posts/list.html', {'posts': hashtag_posts, "comment_form": comment_form, "h1": f"\"#{hashtag.content}\" 검색 결과", })

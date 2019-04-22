@@ -16,6 +16,7 @@ class ImageModelForm(forms.ModelForm):
             "file": forms.FileInput(attrs={"multiple": True})
         }
 
+
 class CommentModelForm(forms.ModelForm):
     class Meta:
         model = Comment

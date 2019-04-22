@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+{% load bootstrap4 %}
+
+{% block body %}
+
+    <div class="row">
+
+        <div class="col-4">
+
+            <img src="" alt="{{ user_info.username }}-profile-picture">
+
+        </div>
+        <div class="col-8">
+
+            <h1> {{ user_info.username }}</h1>
+
+        </div>
+
+        <div>
+            <p class=""> POST : {{ user_info.post_set.all.count }},
+                FOLLOW : {{ user_info.follow.count }}명
+
+                {% if user_info.follow.all %}
+
+                <
+                {% for followee in user_info.follow.all %}
+                {{ followee }}
+                {% endfor %}
+                >
+
+                {% endif %}
+            </p>
+
+            {% if request.user != user_info %}
+
+
+            <form action="{% url "accounts:follow_user" user_info.username %}" method="post">
+            {% csrf_token %}
+                {% if request.user in user_info.follow.all %}
+                    <button class="btn btn-danger" type="submit">Unfollow</button>
+                {% else %}
+                    <button class="btn btn-success" type="submit">Follow</button>
+                {% endif %}
+            </form>
+            {#        TODO: follow button, posts count, follower count, 자기소개  #}
+
+            {% endif %}
+
+        </div>
+    </div>
+
+
+    <div class="card-columns">
+
+        {% for post in user_info.post_set.all %}
+
+            {% include "posts/_post.html" with post=post %}
+
+        {% endfor %}
+
+
+    </div>
+
+
+{% endblock %}
