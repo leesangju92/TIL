@@ -30,7 +30,7 @@ def login(request):
         form = CustomUserAuthenticationForm(request, data=request.POST)
         if form.is_valid():
             auth_login(request, form.get_user())
-            return redirect(request.GET.get("next") or "insta:post_list")
+            return redirect(request.GET.get("next" or "insta:post_list")
     else: # 사용자가 로그인 화면을 요청할 때
         form = CustomUserAuthenticationForm()
     return render(request, "accounts/login.html", {"form": form})
