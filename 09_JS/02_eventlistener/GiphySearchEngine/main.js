@@ -105,7 +105,7 @@ button.addEventListener("click", e=> {
 //     AJAXCall.open('GET', URL); // 요청을 발사할 준비
 //     AJAXCall.send(); // 발사!
 //     AJAXCall.addEventListener('load', e => { // load 를 기다리며.. res 가 오면,
-//         const parseData = JSON.parse(e.target.response);
+    //         const parseData = JSON.parse(e.target.response);
 //         pushToDOM(parseData);
 //     });
 //

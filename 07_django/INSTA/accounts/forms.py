@@ -4,6 +4,7 @@ from django.contrib.auth.forms import UserChangeForm # 회원정보 수정
 from .models import User
 
 
+
 class CustomUserCreateForm(UserCreationForm):
 
     class Meta(UserCreationForm):
