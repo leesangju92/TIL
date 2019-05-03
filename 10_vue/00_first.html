@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<!--block body 의 느낌, vue라는 클래스의 인스턴스가 되었다고 생각할 수도 있음-->
+<div id="app">
+    <p>{{ message }}</p>
+    <button v-on:click="reverseMessage">Reverse</button>
+    <p> {{ count }}</p>
+    <button v-on:click="plus">up</button>
+    <button v-on:click="minus">down</button>
+</div>
+
+<div id="app2">
+    <ul>
+        <li v-for="todo in todos"> {{ todo.content }} </li>
+    </ul>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script>
+    const app = new Vue({
+        el: "#app",
+        //data란 키 값에는 항상 오브젝트가 와야 한다. 값만
+        data: {
+            message: "Hello vue JS",
+            count : 0,
+        },
+
+        //methods란 키 값에는 항상 오브젝트가 와야 한다. 함수만
+        methods : {
+            plus:function () {
+                this.count++;
+            },
+
+            minus:function () {
+                this.count--;
+            },
+
+            reverseMessage: function () {
+                this.message = this.message.split("").reverse().join("")
+            }
+        }
+    });
+
+    const app2 = new Vue({
+        el: "#app2",
+        data: {
+            todos: [
+                {content: "JS 배우기"},
+                {content: "VUE 배우기"},
+                {content: "짱짱한거 만들기"},
+            ]
+
+        }
+
+
+    });
+
+    app.plus();
+    console.log(app.$data.count);
+
+</script>
+</body>
+</html>

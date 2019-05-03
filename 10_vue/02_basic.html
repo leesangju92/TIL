@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="app">
+<!--    원하는 대로 작동하는 곳은 텍스트 부분-->
+    <h1 v-once >{{ title }}</h1>
+    <p>{{  sayhello()  }}</p>
+    <a v-bind:href="link">google</a>
+    {{rawHTML}} <!--XSS: cross site scripting-->
+    <span v-html="rawHTML"></span>
+
+</div>
+<script src="./vue.js"></script>
+<script>
+    new Vue({
+        el: "#app",
+        data: {
+            title: "hello",
+            link: "https://google.com",
+            rawHTML: "<a href='https://naver.com'>네이버</a>",
+        },
+        methods: {
+            sayhello() {
+                this.title = "goodbye";
+                return this.title
+            }
+        },
+    })
+</script>
+</body>
+</html>
