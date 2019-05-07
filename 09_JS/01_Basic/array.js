@@ -16,13 +16,14 @@ numbers.shift(); // [1, 2, 3, 4]
 
 /* 복사본을 return 하는 method */
 
+
 numbers.includes(1); // true
 numbers.includes(0); // false
 
-numbers.push("a", "a");
+console.log(numbers.push("a", "a"));
 
 numbers.indexOf("a"); // 4 : 가장 앞의 것
-numbers.indexOf("b"); // -1 : 없음
+console.log(numbers.indexOf("b")); // -1 : 없음
 
 numbers.join(""); // "1234aa"
 numbers.join(); // "1,2,3,4,a,a"

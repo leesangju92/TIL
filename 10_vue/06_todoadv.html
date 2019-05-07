@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        .completed {
+            text-decoration: line-through;
+            opacity: 0.5;
+        }
+    </style>
+    <title>Title</title>
+</head>
+<body>
+<div id="app">
+    <select v-model="status">
+        <option value="all"> 모두 보기 </option>
+        <option value="active" selected> 진행중 </option>
+        <option value="completed"> 완료 </option>
+    </select>
+    <!-- v-on: 을 @로 대체할 수 있다.  -->
+    <button v-on:click="clearCompleted()">Clear Completed Todos</button>
+
+    <ol v-if="todos.length">
+        <!-- 작성된 순서는 상관없이 for가 먼저 실행된다-->
+        <!-- v-for, v-if, v-else 는 전달인자를 받지 않지만, v-on은 전달인자를 받기에 형태가 조금 다르다-->
+        <!-- <li v-for="todo in todos" v-bind:class="[completed: todo.completed]"> -->
+        <!--  virtual DOM 에서 구별 잘 할 수 있도록 v-bind:key를 꼭 해주자. -->
+        <li v-for="todo in groupTodosByStatus()" v-bind:class="todo.completed ? 'completed' : '' " v-bind:key="todo.id">
+            <input type="checkbox" v-model="todo.completed">
+            <span >{{todo.content}}</span>
+        </li>
+    </ol>
+</div>
+
+<script src="./vue.js"></script>
+<script>
+    const app = new Vue({
+        el : "#app",
+        data : {
+            todos : [
+                { id: 1, content: "저녁메뉴 고민하기", completed: true,},
+                { id: 2, content:  "시험 공부 하기", completed: false,},
+                { id: 3, content:  "집 살 걱정 하기", completed: false,},
+                { id: 4, content: "행복~", completed: false, },
+            ],
+            newTodo : "",
+            status : "all",
+        },
+        computed : {
+            },
+        },
+        methods : {
+            check: function (todo) {
+                if (todo.completed) {
+                    todo.completed = false
+                } else {
+                    todo.completed = true
+                }
+            },
+            addTodo: function () {
+                this.todos.push({
+                    id : Date.now(),
+                    content: this.newTodo,
+                    completed: false,
+                });
+                this.newTodo = null
+            },
+            clearCompleted: function () {
+                const notClearTodos = this.todos.filter(todo => todo.completed === false);
+                this.todos = notClearTodos;
+                // const ClearTodos = this.todos.filter(todo => todo.completed === true);
+                // for (const clearTodo of clearTodos) {
+                //     const index = this.todos.indexOf(clearTodo);
+                //     console.log(index);
+                //     this.todos.splice(index, 1);
+                // }
+            },
+            groupTodosByStatus : function () {
+            if (this.status === "active") {
+                return this.todos.filter(todo => !todo.completed)
+            } else if ( this.status === "completed") {
+                return this.todos.filter(todo => todo.completed)
+            } else {
+                return this.todos
+            }}
+        }, });
+</script>
+</body>
+</html>
+
+
+<!--{ "content": "v-once", "completed": false }
+{ "content": "v-bind", "completed": false }
+{ "content": "v-on", "completed": false }
+{ "content": "v-html", "completed": false }
+{ "content": "v-for", "completed": false }
+{ "content": "v-if v-else-if v-else", "completed": false }
+{ "content": "v-model", "completed": false }
+{ "content": "v-pre v-cloak v-show", "completed": false }-->

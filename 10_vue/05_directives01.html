@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="app">
+    <a :href="url">google</a>
+    <br>
+    {{message}}
+    {{ status ? "Good" : "Bad" }}
+    <!-- 파이프 라인 앞에 있는 게 뒤에 있는 함수의 인자로 넘어간다.   -->
+    {{ message | capitalize }}
+
+    <!-- template는 v-if랑만 쓴다 -->
+    <template v-if="status">
+        <h1>Good</h1>
+        <p> It's good to see you again</p>
+    </template>
+    <p v-if="type === 'A'"> A</p>
+    <p v-if="type === 'B'"> B</p>
+    <p v-if="type === 'C'"> C</p>
+
+    <!-- 토글비용 -->
+    <h1 v-if="eng"> HI </h1>
+    <!-- display:none, 초기 랜더링 비용  -->
+    <h2 v-show="kor"> 안녕하세요 </h2>
+
+</div>
+<script src="./vue.js"></script>
+<script>
+    const app = new Vue({
+        el : "#app",
+        data : {
+            message : "hi",
+            type: "A",
+            status : true,
+            eng: true,
+            kor: false,
+            url: "https://google.com"
+        },
+        methods : {},
+        filters : {
+            capitalize : function (value) {
+              if (!value) return ``;
+              value = value.toString();
+              return value.charAt(0).toUpperCase() + value.slice(1);
+            },
+        }
+    });
+</script>
+</body>
+</html>

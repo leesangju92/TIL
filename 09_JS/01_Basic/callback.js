@@ -1,3 +1,11 @@
+function myFunc () {
+    return n => n+1;
+}
+
+const num_101 = myFunc()(100);      // 101을 저장하세요.
+console.log(num_101);
+console.log("wowbod");
+
 const numbersEachAdd = numbers => {
     let sum = 0;
     for (const number of numbers) {

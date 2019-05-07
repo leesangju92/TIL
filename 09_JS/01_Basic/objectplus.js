@@ -17,6 +17,7 @@ function makeArticle (id, title, content) {
         content,
         makeOne () {
             return `${this.id} 번 글: ${this.title} => ${this.content}`
-        },
+},
     }
 }
+console.log(makeArticle(1, "첫번째글", "안녕하세요. 반갑습니다.").makeOne())

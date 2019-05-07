@@ -21,7 +21,6 @@ const postRequest = URL => {
         .then(response => response.json()) // 기다리고, 도착한 데이터를 파싱함
         .then(parseData => console.log(parseData)); // 파싱한 데이터를 출력한다.
 //      .then(parseData=> Document.appendChild("h1"))
-
 };
 postRequest(URL);
 

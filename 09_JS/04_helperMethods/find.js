@@ -14,11 +14,11 @@
 // }
 
 const avengers = [
-    {name: "tony"},
-    {name: "captain"},
-    {name: "hulk"},
-    {name: "thor"},
+    {name: "tony", id:1},
+    {name: "captain", id:2},
+    {name: "hulk", id:3},
+    {name: "hulk", id:4},
 ];
 
 const a = avengers.find(avenger => avenger.name === "hulk" );
-console.log(a);
+console.log(a.id);

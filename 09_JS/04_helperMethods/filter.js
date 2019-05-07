@@ -16,17 +16,19 @@
 
 
 const products = [
-    {name: "cucumber", type:"vege",},
+    {name: "cucumber", type:"vegetable",},
     {name: "banana", type:"fruit",},
-    {name: "carrot", type:"vege",},
+    {name: "carrot", type:"vegetable",},
     {name: "tomato", type:"fruit",},
 ];
 
-const fruits = products.filter(product => {
-    return product.type === "vege";
-});
+console.log(products.filter(product => product.type === "vegetable").map(res => res.name));
+// const veges = map();
+// console.log(veges);
 
-console.log(fruits);
+const array1 = [1, 4, 9, 16];
+const map1 = array1.map(x => x * 2);
+console.log(map1);
 
 const users = [
     { id: 1, admin:true },
