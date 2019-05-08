@@ -29,3 +29,20 @@ function makeArticle (id, title, content) {
 }
 
 makeArticle("title" = "첫번째글", "content"="안녕하세요. 반갑습니다.", "id"=1 ).makeOne();
+
+
+const products = [
+    {name: "cucumber", type:"vegetable",},
+    {name: "banana", type:"fruit",},
+    {name: "carrot", type:"vegetable",},
+    {name: "tomato", type:"fruit",},
+];
+
+var vegetables = [];
+
+for ( var i = 0; i < products.length; i++) {
+    if (products[i].type === "vegetable") {
+        vegetables.push(products[i])
+    }
+
+console.log(vegetables)

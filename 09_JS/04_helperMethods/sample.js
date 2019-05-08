@@ -1,13 +1,14 @@
-var
+const products = [
+    {name: "cucumber", type:"vegetable",},
+    {name: "banana", type:"fruit",},
+    {name: "carrot", type:"vegetable",},
+    {name: "tomato", type:"fruit",},
+];
 
-
-
-
-
-    for ( var i = 0; i < ; i++) {
-
+var vegetables = [];
+for ( var i = 0; i < products.length; i++) {
+    if (products[i].type === "vegetable") {
+        vegetables.push(products[i])
+    }
 }
-
-
-
-    const
+console.log(vegetables);
