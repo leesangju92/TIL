@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        .completed {
+            text-decoration: line-through;
+            opacity: 0.5;
+        }
+    </style>
+    <title>Title</title>
+</head>
+<body>
+<div id="app">
+    <p> 원본 메시지 : {{ message }}</p>
+    <p> 뒤집힌 메시지 : {{ reversedMessage }}</p>
+
+    <!-- 콘솔에서 각각을 실행했을 경우, dateMethod는 계속 갱신되지만th dateMeods는 같은 값만 계속 나온다. -->
+    <!-- 이름이 겹치지만 않는다면 알아서 잘 뽑아온다. -->
+    <p> {{ dateMethod() }}</p>
+    <p> {{ dateMethods }}</p>
+
+<!--  절대 중괄호 내에 적으면 안되는 것들
+  1. {{ let i = 1 }} 변수 선언
+  2. {{ message.split("").reverse.join("")}} bad way
+  3. {{ if (conditions) {do something} }} //  {{ if condition ? a: b }} 삼항 연산자는 가능
+  -->
+
+</div>
+
+<script src="./vue.js"></script>
+<script>
+    const app = new Vue({
+        el : "#app",
+        data : {
+            message: "안녕하세요",
+            d : Date.now(),
+        },
+        methods : {
+            reverseMessage () {
+              return this.message.split("").reverse().join("")
+          },
+            dateMethod () {
+              return Date.now()
+            },
+        },
+        computed : { // 이미 실행되어 있고 이름으로 그 값을 가져오는 것이다.
+            reversedMessage () {
+              return this.message.split("").reverse().join("")
+            },
+            dateMethods () {
+                return Date.now()
+            }
+        }
+    });
+</script>
+</body>
+</html>
+
+
+<!--{ "content": "v-once", "completed": false }
+{ "content": "v-bind", "completed": false }
+{ "content": "v-on", "completed": false }
+{ "content": "v-html", "completed": false }
+{ "content": "v-for", "completed": false }
+{ "content": "v-if v-else-if v-else", "completed": false }
+{ "content": "v-model", "completed": false }
+{ "content": "v-pre v-cloak v-show", "completed": false }-->

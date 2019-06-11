@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<script src="./vue.js"></script>
+<script>
+    const todosApp = {
+        storageKey : "my-todos",
+        fetch : function () {
+            return JSON.parse(localStorage.getItem(this.STORAGE_KEY))
+        },
+        save (todos) {
+            // localStorage.getItem("key","Value") : Key, Value 는 모두 string 이어야 한다. JSON.stringify(Value)
+            localStorage.getItem(this.STORAGE_KEY, JSON.stringify(todos));
+        },
+    };
+    todosApp.fetch();
+    const app = new Vue({ el: "#app"})
+</script>
+
+</body>
+</html>

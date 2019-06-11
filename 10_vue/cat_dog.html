@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        .animal {
+            max-width: 0.25vw;
+        }
+    </style>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <title>Title</title>
+</head>
+<body>
+<div id="app" class="container-fluid">
+    <audio id="dogsound" ref="sound">
+        <source src="./bark.mp3" type="audio/mp3">
+    </audio>
+    <button v-on:click="getDogImage">멍 -> {{dogCount}}</button>
+    <button v-on:click="getCatImage">냥 -> {{catCount}}</button>
+    <br>
+    <div v-for="image of images" class="card-columns">
+        <img class="card-image-top " v-bind:src="image" alt="">
+        <div class="card-body"> <h5 class="card-title">멍냥 </h5> </div>
+    </div>
+
+</div>
+<script src="./vue.js"></script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script>
+    new Vue({
+        el: "#app",
+        data: {
+            images: [],
+            catCount: 0,
+            dogCount: 0,
+        },
+        methods: {
+            getDogImage () {
+                const URL = 'https://dog.ceo/api/breeds/image/random';
+                this.$refs.sound.play();
+                const sound = new Audio(sound);
+                axios.get(URL)
+                    .then(response => {
+                        this.images.push(response.data.message);
+                    })
+                    .then(()=> this.dogCount++)
+                    .catch(e => {console.log(e); alert("error");})
+            },
+            async getCatImage () {
+                try {
+                    const URL ='https://api.thecatapi.com/v1/images/search';
+                    const response = await axios.get(URL);
+                    this.images.push(response.data[0].url);
+                    this.catCount++;
+                } catch(error) {
+                    console.error(error);
+                }
+                // axios.get(URL)
+                //     .then(response => {
+                //         this.images.push(response.data[0].url);
+                //     })
+                //     .then(()=> this.catCount++)
+            }
+        },
+
+    })
+</script>
+</body>
+</html>

@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        .completed {
+            text-decoration: line-through;
+            opacity: 0.5;
+        }
+    </style>
+    <title>Title</title>
+</head>
+<body>
+<div id="app">
+    <input type="text" v-model="newTodo" v-on:keyup.enter="addTodo()" autofocus>
+    <select v-model="status">
+        <option value="all"> 모두 보기 </option>
+        <option value="active" selected> 진행중 </option>
+        <option value="completed"> 완료 </option>
+    </select>
+    <!-- v-on: 을 @로 대체할 수 있다.  -->
+    <button v-on:click="clearCompleted()">Clear Completed Todos</button>
+
+    <ol v-if="todos.length">
+        <!-- 작성된 순서는 상관없이 for가 먼저 실행된다-->
+        <!-- v-for, v-if, v-else 는 전달인자를 받지 않지만, v-on은 전달인자를 받기에 형태가 조금 다르다-->
+        <!-- <li v-for="todo in todos" v-bind:class="[completed: todo.completed]"> -->
+        <!--  virtual DOM 에서 구별 잘 할 수 있도록 v-bind:key를 꼭 해주자. -->
+        <li v-for="todo in groupTodosByStatus()" v-bind:class="todo.completed ? 'completed' : '' " v-bind:key="todo.id">
+            <input type="checkbox" v-model="todo.completed">
+            <span >{{todo.content}}</span>
+        </li>
+    </ol>
+</div>
+<script src="./vue.js"></script>
+<script>
+    const todosApp = {
+        storageKey : "my-todos",
+        fetch : function () {
+            return JSON.parse(localStorage.getItem(this.storageKey)) || []
+        },
+        save (todos) {
+            // localStorage.getItem("key","Value") : Key, Value 는 모두 string 이어야 한다. JSON.stringify(Value)
+            localStorage.setItem(this.storageKey, JSON.stringify(todos));
+        },
+    };
+    const app = new Vue({
+        el : "#app",
+        data : {
+            todos : todosApp.fetch() || [],
+            newTodo : "",
+            status : "all",
+        },
+        computed : {
+        },
+        watch : {
+            todos : {
+                deep : true,
+                // 인자 1개가 있을 때 항상 현재의 data값을 가지고 온다
+                handler : function (todos) {
+                    todosApp.save(todos)
+                },
+            },
+        },
+        methods : {
+            check: function (todo) {
+                if (todo.completed) {
+                    todo.completed = false
+                } else {
+                    todo.completed = true
+                }
+            },
+            addTodo: function () {
+                this.todos.push({
+                    id : Date.now(),
+                    content: this.newTodo,
+                    completed: false,
+                });
+                this.newTodo = null
+            },
+            clearCompleted: function () {
+                const notClearTodos = this.todos.filter(todo => todo.completed === false);
+                this.todos = notClearTodos;
+                // const ClearTodos = this.todos.filter(todo => todo.completed === true);
+                // for (const clearTodo of clearTodos) {
+                //     const index = this.todos.indexOf(clearTodo);
+                //     console.log(index);
+                //     this.todos.splice(index, 1);
+                // }
+            },
+            groupTodosByStatus : function () {
+            if (this.status === "active") {
+                return this.todos.filter(todo => !todo.completed)
+            } else if ( this.status === "completed") {
+                return this.todos.filter(todo => todo.completed)
+            } else {
+                return this.todos
+            }}
+        },
+    });
+</script>
+</body>
+</html>
+<!-- return이 필요하면 computed, watch 뭔가 실행해야하는 것이 목적이라면 method-->
+

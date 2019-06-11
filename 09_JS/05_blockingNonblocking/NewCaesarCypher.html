@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<label for="user-input">
+    <input type="text" id="user-input" autofocus>
+</label>
+
+<h1 id="user-output"></h1>
+
+<script>
+    const userInput = document.querySelector("#user-input");
+    const userOutput = document.querySelector("#user-output");
+
+    userInput.addEventListener("keydown", ()=>{
+        console.log(userInput.value);
+        userOutput.innerText = null;
+        let newString = "";
+        for ( const char of userInput.value ) {
+            console.log(char);
+            let num = char.charCodeAt();
+            let new_num = (num + 1);
+            console.log(new_num);
+            newString += String.fromCharCode(new_num);
+        }
+        userOutput.append(newString);
+    })
+</script>
+</body>
+</html>

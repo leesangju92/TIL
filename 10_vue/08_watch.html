@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="app">
+    <h1> {{ title }}</h1>
+    <input type="text" v-model="question">
+    <h2>{{answer}}</h2>
+    <img :src="image" alt="">
+</div>
+
+<script src="./vue.js"></script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script>
+    const app = new Vue({
+        el : "#app",
+        data : {
+            title : "마법의 소라고동",
+            question : "",
+            answer : "",
+            image: "",
+        },
+        computed : {},
+        methods : {
+            getAnswer () {
+                if (this.question[this.question.length - 1] !== "?") {
+                    this.answer = "물음표를 찍으면 답을 알려주겠습니다."
+                } else {
+                    const URL = "https://yesno.wtf/api";
+                    axios.get(URL)
+                        .then(res => {
+                            console.log(res.data.answer);
+                            this.image = res.data.image
+                        });
+                }
+            }
+        },
+        watch : {
+            question : function() {
+                this.getAnswer();
+            }
+        }
+    });
+</script>
+</body>
+</html>
+
+<!--Vue 디렉티브-->
+<!--{ "content": "v-once", "completed": false }
+{ "content": "v-bind", "completed": false }
+{ "content": "v-on", "completed": false }
+{ "content": "v-html", "completed": false }
+{ "content": "v-for", "completed": false }
+{ "content": "v-if v-else-if v-else", "completed": false }
+{ "content": "v-model", "completed": false }
+{ "content": "v-show", "completed": false }-->
+
+<!--Vue 속성들-->
+<!--el-->
+<!--data-->
+<!--methods-->
+<!--computed-->
+<!--watch-->
+
+<!-- console에서 정보 확인하는 법-->
+<!--app.$el-->
+<!--app.$ref-->
+<!--app.$data-->
